@@ -36,8 +36,18 @@ label {
     display: block;
 }
 
-input, select, button {
+input[type="text"],
+select,
+button {
     width: 100%;
+}
+
+input[type="time"],
+input[type="date"] {
+    width: 100%;
+    max-width: 180px;
+}
+
     padding: 12px;
     margin-top: 8px;
     border-radius: 8px;
