@@ -139,6 +139,58 @@ document.getElementById("maskine").addEventListener("change", function() {
         andetInput.required = false;
     }
 });
+<script>
+document.getElementById("maskine").addEventListener("change", function() {
+    const andetInput = document.getElementById("andetInput");
+
+    if (this.value === "Andet") {
+        andetInput.style.display = "block";
+        andetInput.required = true;
+    } else {
+        andetInput.style.display = "none";
+        andetInput.required = false;
+    }
+});
+
+// 🔽 DET HER MANGLER I DIN FIL
+document.querySelector("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let wf = [];
+    document.querySelectorAll("input[type=checkbox]:checked").forEach(el => wf.push(el.parentElement.innerText.trim()));
+
+    let maskine = document.getElementById("maskine").value;
+    let andet = document.getElementById("andetInput").value;
+
+    if (maskine === "Andet") {
+        maskine = andet;
+    }
+
+    const data = {
+        maskintype: maskine,
+        startTid: document.querySelectorAll('[type=time]')[0].value,
+        slutTid: document.querySelectorAll('[type=time]')[1].value,
+        dato: document.querySelector('[type=date]').value,
+        workfront: wf.join(", ")
+    };
+
+    fetch("https://defaultead72687ae40460d9aebb958940b88.89.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/33b75c4ba5614d7e9ca29b84088adbf7/triggers/manual/paths/invoke?api-version=1", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        alert("Gemt!");
+        document.querySelector("form").reset();
+    })
+    .catch(() => {
+        alert("Fejl - prøv igen");
+    });
+});
+</script>
+``
 </script>
 
 </body>
