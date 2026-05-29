@@ -118,7 +118,7 @@ button {
 </div>
 
 <script>
-// dropdown (andet)
+// Vis "andet" felt
 document.getElementById("maskine").addEventListener("change", function() {
     const andetInput = document.getElementById("andetInput");
 
@@ -131,7 +131,7 @@ document.getElementById("maskine").addEventListener("change", function() {
     }
 });
 
-// send data
+// Send data
 document.querySelector("form").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -156,6 +156,7 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     fetch("https://webhook.site/6b25793c-3475-4684-8af3-e1fa59f0700d", {
         method: "POST",
+        mode: "no-cors",
         headers: {
             "Content-Type": "application/json"
         },
@@ -164,9 +165,6 @@ document.querySelector("form").addEventListener("submit", function(e){
     .then(() => {
         alert("Gemt!");
         document.querySelector("form").reset();
-    })
-    .catch(() => {
-        alert("Fejl - prøv igen");
     });
 });
 </script>
