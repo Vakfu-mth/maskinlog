@@ -118,7 +118,7 @@ button {
 </div>
 
 <script>
-// Vis "andet" felt
+// vis "andet"
 document.getElementById("maskine").addEventListener("change", function() {
     const andetInput = document.getElementById("andetInput");
 
@@ -131,7 +131,7 @@ document.getElementById("maskine").addEventListener("change", function() {
     }
 });
 
-// Send data
+// send data
 document.querySelector("form").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -156,6 +156,7 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     fetch("https://script.google.com/macros/s/AKfycbxxyLmrxPKuA_4j33cQ2f38FVr2pSld_3sbtc-gtlUgg6qcvqP3gzChxsvLk7kNwsXd/exec", {
         method: "POST",
+        mode: "no-cors",
         headers: {
             "Content-Type": "application/json"
         },
