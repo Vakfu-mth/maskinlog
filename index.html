@@ -13,7 +13,7 @@ body {
 }
 
 .header {
-    background: #003a8f; /* MTH blå */
+    background: #003a8f;
     color: white;
     padding: 15px;
     text-align: center;
@@ -40,14 +40,17 @@ input[type="text"],
 select,
 button {
     width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
 }
 
 input[type="time"],
 input[type="date"] {
     width: 100%;
     max-width: 180px;
-}
-
     padding: 12px;
     margin-top: 8px;
     border-radius: 8px;
@@ -64,17 +67,8 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background: #0050b3;
-}
-
 .checkbox-group {
     margin-top: 10px;
-}
-
-.checkbox-group label {
-    display: block;
-    font-weight: normal;
 }
 
 #andetInput {
@@ -85,12 +79,9 @@ button:hover {
 
 <body>
 
-<div class="header">
-    Maskin Log
-</div>
+<div class="header">Maskin Log</div>
 
 <div class="container">
-
 <form>
 
 <label>Maskintype</label>
@@ -124,22 +115,10 @@ button:hover {
 <button type="submit">Gem</button>
 
 </form>
-
 </div>
 
 <script>
-document.getElementById("maskine").addEventListener("change", function() {
-    const andetInput = document.getElementById("andetInput");
-    
-    if (this.value === "Andet") {
-        andetInput.style.display = "block";
-        andetInput.required = true;
-    } else {
-        andetInput.style.display = "none";
-        andetInput.required = false;
-    }
-});
-<script>
+// dropdown (andet)
 document.getElementById("maskine").addEventListener("change", function() {
     const andetInput = document.getElementById("andetInput");
 
@@ -152,12 +131,13 @@ document.getElementById("maskine").addEventListener("change", function() {
     }
 });
 
-// 🔽 DET HER MANGLER I DIN FIL
+// send data
 document.querySelector("form").addEventListener("submit", function(e){
     e.preventDefault();
 
     let wf = [];
-    document.querySelectorAll("input[type=checkbox]:checked").forEach(el => wf.push(el.parentElement.innerText.trim()));
+    document.querySelectorAll("input[type=checkbox]:checked")
+        .forEach(el => wf.push(el.parentElement.innerText.trim()));
 
     let maskine = document.getElementById("maskine").value;
     let andet = document.getElementById("andetInput").value;
@@ -190,9 +170,6 @@ document.querySelector("form").addEventListener("submit", function(e){
     });
 });
 </script>
-``
-</script>
 
 </body>
 </html>
-``
